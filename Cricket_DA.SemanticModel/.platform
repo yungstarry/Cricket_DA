@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Cricket_DA"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "52afa58e-e5a3-43a8-abbf-8ab0f272b87b"
+  }
+}

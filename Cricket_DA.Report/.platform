@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Cricket_DA"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d948fdd6-97f8-4cad-952e-49e90cf74d15"
+  }
+}
