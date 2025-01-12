@@ -1,0 +1,48 @@
+table _Calculations
+	lineageTag: 89f5e92a-d745-49ca-a20d-d1985e589d03
+
+	measure 'Total Runs' = SUM(fact_bating_summary[runs])
+		formatString: 0
+		lineageTag: d0e3b399-448b-469f-b923-80e307033b34
+
+	measure 'Total Innings Batted' = COUNT(dim_match_summary[match_id])
+		formatString: 0
+		lineageTag: 0b8223cf-74d1-4da1-a14d-ed02494cb254
+
+	measure 'Total Innings Dismissed' = SUM(fact_bating_summary[out])
+		formatString: 0
+		lineageTag: e21b76d3-9067-4f75-859c-af296620de56
+
+	measure 'Batting Avg' = DIVIDE([Total Runs],[Total Innings Dismissed],0)
+		lineageTag: 8f93b3bc-49db-4fed-9418-c02a4de3f7b6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Balls Faced' = SUM(fact_bating_summary[balls])
+		formatString: 0
+		lineageTag: 1ace557c-29a7-4077-870d-ceb0283f670c
+
+	measure 'Strike rate' = ```
+			DIVIDE([Total Runs],[Total Balls Faced],0)*100 
+			```
+		lineageTag: e6a31a18-8732-41af-afb2-dd2ad66af3f7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Battling Position' = ROUNDUP(AVERAGE(fact_bating_summary[battingPos]), 0)
+		lineageTag: 1adec08c-ca30-4c48-a2e0-407ad158889e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition _Calculations = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

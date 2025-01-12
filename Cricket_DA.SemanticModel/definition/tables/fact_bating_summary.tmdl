@@ -1,0 +1,118 @@
+table fact_bating_summary
+	lineageTag: a77eb211-019f-4357-a565-2ef10f1b02f0
+
+	column match
+		dataType: string
+		lineageTag: be0d4a3e-b373-4a0f-8d57-51922f4ac024
+		summarizeBy: none
+		sourceColumn: match
+
+		annotation SummarizationSetBy = Automatic
+
+	column team
+		dataType: string
+		lineageTag: d36e0c51-90d2-4b1b-845b-a155f48674bf
+		summarizeBy: none
+		sourceColumn: team
+
+		annotation SummarizationSetBy = Automatic
+
+	column battingPos
+		dataType: int64
+		formatString: 0
+		lineageTag: 67b71b80-2919-4c34-b8ea-d3d67d64abfc
+		summarizeBy: sum
+		sourceColumn: battingPos
+
+		annotation SummarizationSetBy = Automatic
+
+	column batsmanName
+		dataType: string
+		lineageTag: 141882af-6b57-43e3-bd49-261c66f99665
+		summarizeBy: none
+		sourceColumn: batsmanName
+
+		annotation SummarizationSetBy = Automatic
+
+	column runs
+		dataType: int64
+		formatString: 0
+		lineageTag: 76e069fe-eeeb-48c9-aa13-4894ba8406a6
+		summarizeBy: sum
+		sourceColumn: runs
+
+		annotation SummarizationSetBy = Automatic
+
+	column balls
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c9b45f9-1270-41ec-ac40-51cfd4cd0276
+		summarizeBy: sum
+		sourceColumn: balls
+
+		annotation SummarizationSetBy = Automatic
+
+	column fours
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d25244b-eb88-45d9-a2bd-7eda54a48022
+		summarizeBy: sum
+		sourceColumn: fours
+
+		annotation SummarizationSetBy = Automatic
+
+	column sixes
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b95fca6-8e96-4676-a816-99e3fd5af737
+		summarizeBy: sum
+		sourceColumn: sixes
+
+		annotation SummarizationSetBy = Automatic
+
+	column SR
+		dataType: string
+		lineageTag: 18966cc4-f4ee-4523-8980-f7e233636491
+		summarizeBy: none
+		sourceColumn: SR
+
+		annotation SummarizationSetBy = Automatic
+
+	column out
+		dataType: int64
+		formatString: 0
+		lineageTag: 37b6ebd6-6367-46b1-80e1-934703b99c69
+		summarizeBy: sum
+		sourceColumn: out
+
+		annotation SummarizationSetBy = Automatic
+
+	column match_id
+		dataType: string
+		lineageTag: e88f2615-43a6-4f23-9ee5-82f42be51ac1
+		summarizeBy: none
+		sourceColumn: match_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_bating_summary = m
+		mode: import
+		source =
+				let
+				    Source = Folder.Files("C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files"),
+				    #"C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files\_fact_bating_summary csv" = Source{[#"Folder Path"="C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files\",Name="fact_bating_summary.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files\_fact_bating_summary csv",[Delimiter=",", Columns=11, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"match", type text}, {"teamInnings", type text}, {"battingPos", Int64.Type}, {"batsmanName", type text}, {"runs", Int64.Type}, {"balls", Int64.Type}, {"4s", Int64.Type}, {"6s", Int64.Type}, {"SR", type text}, {"out/not_out", type text}, {"match_id", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"teamInnings", "team"}, {"4s", "fours"}, {"6s", "sixes"}, {"out/not_out", "out"}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns","out","1",Replacer.ReplaceText,{"out"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","not_1","0",Replacer.ReplaceText,{"out"}),
+				    #"Extracted Text Before Delimiter" = Table.TransformColumns(#"Replaced Value1", {{"batsmanName", each Text.BeforeDelimiter(_, "("), type text}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Extracted Text Before Delimiter",{{"out", Int64.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

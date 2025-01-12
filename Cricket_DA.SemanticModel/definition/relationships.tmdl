@@ -1,0 +1,21 @@
+relationship fa71821c-bfcd-4503-b30e-d6e49bc48406
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_match_summary.matchDate
+	toColumn: LocalDateTable_831203b5-8c38-4386-a364-cd42bbb1638a.Date
+
+relationship AutoDetected_ba936f41-5163-413e-b85c-97b55845eefe
+	fromColumn: fact_bating_summary.match_id
+	toColumn: dim_match_summary.match_id
+
+relationship AutoDetected_68dcdc73-4773-491a-a669-1b0c661b41f3
+	fromColumn: fact_bowling_summary.match_id
+	toColumn: dim_match_summary.match_id
+
+relationship 073782fa-c459-e99a-48f1-d51a8759691f
+	fromColumn: fact_bowling_summary.bowlerName
+	toColumn: dim_players.name
+
+relationship 5d5d09e3-1b2e-7d16-601b-c4af5a1d9a45
+	fromColumn: fact_bating_summary.batsmanName
+	toColumn: dim_players.name
+

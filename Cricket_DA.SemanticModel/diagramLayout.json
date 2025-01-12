@@ -4,10 +4,76 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
-        "y": 0
+        "x": 196,
+        "y": 72
       },
-      "nodes": [],
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 5
+          },
+          "nodeIndex": "dim_match_summary",
+          "nodeLineageTag": "9b00fecc-1447-4d1a-84e1-4b73fbe33bda",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 457.81192627236885,
+            "y": 0
+          },
+          "nodeIndex": "dim_players",
+          "nodeLineageTag": "e310697f-dce0-4792-ac32-09b11442b018",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 198,
+            "y": 357
+          },
+          "nodeIndex": "fact_bating_summary",
+          "nodeLineageTag": "a77eb211-019f-4357-a565-2ef10f1b02f0",
+          "size": {
+            "height": 222,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 597,
+            "y": 232.278769054897
+          },
+          "nodeIndex": "fact_bowling_summary",
+          "nodeLineageTag": "d9148808-52f8-4efd-8a71-823f0c6ed6ae",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 881,
+            "y": 237.5
+          },
+          "nodeIndex": "_Calculations",
+          "nodeLineageTag": "89f5e92a-d745-49ca-a20d-d1985e589d03",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
       "name": "All tables",
       "zoomValue": 100,
       "pinKeyFieldsToTop": false,

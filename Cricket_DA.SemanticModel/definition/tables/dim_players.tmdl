@@ -1,0 +1,79 @@
+table dim_players
+	lineageTag: e310697f-dce0-4792-ac32-09b11442b018
+
+	column name
+		dataType: string
+		lineageTag: 064624e3-ac96-440a-9826-30d646a730cf
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column team
+		dataType: string
+		lineageTag: 9bf15c1e-21c9-4577-bc52-3d9b7f289d4c
+		summarizeBy: none
+		sourceColumn: team
+
+		annotation SummarizationSetBy = Automatic
+
+	column image
+		dataType: string
+		lineageTag: 3e8ef8d4-9ac1-47c8-bb03-f7e592170986
+		summarizeBy: none
+		sourceColumn: image
+
+		annotation SummarizationSetBy = Automatic
+
+	column battingStyle
+		dataType: string
+		lineageTag: 8fcc5bc6-8b21-4f75-9226-9e892d6fa63b
+		summarizeBy: none
+		sourceColumn: battingStyle
+
+		annotation SummarizationSetBy = Automatic
+
+	column bowlingStyle
+		dataType: string
+		lineageTag: 90411429-4944-465a-9e25-db0014cf2f49
+		summarizeBy: none
+		sourceColumn: bowlingStyle
+
+		annotation SummarizationSetBy = Automatic
+
+	column playingRole
+		dataType: string
+		lineageTag: 659e05a9-06c3-4360-97a6-58f3c774bfeb
+		summarizeBy: none
+		sourceColumn: playingRole
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: c8564302-a9f0-4df8-a3c4-da392b1b224c
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_players = m
+		mode: import
+		source =
+				let
+				    Source = Folder.Files("C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files"),
+				    #"C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files\_dim_players csv" = Source{[#"Folder Path"="C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files\",Name="dim_players.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files\_dim_players csv",[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.Csv]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Imported CSV",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"name", type text}, {"team", type text}, {"image", type text}, {"battingStyle", type text}, {"bowlingStyle", type text}, {"playingRole", type text}, {"description", type text}}),
+				    #"Extracted Text Before Delimiter" = Table.TransformColumns(#"Changed Type1", {{"name", each Text.BeforeDelimiter(_, "("), type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Extracted Text Before Delimiter",{{"name", Text.Trim, type text}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Trimmed Text", {"name"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

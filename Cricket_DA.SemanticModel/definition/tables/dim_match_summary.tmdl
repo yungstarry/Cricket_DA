@@ -1,0 +1,93 @@
+table dim_match_summary
+	lineageTag: 9b00fecc-1447-4d1a-84e1-4b73fbe33bda
+
+	column team1
+		dataType: string
+		lineageTag: 5535e120-b708-4811-a324-90c96c3eb358
+		summarizeBy: none
+		sourceColumn: team1
+
+		annotation SummarizationSetBy = Automatic
+
+	column team2
+		dataType: string
+		lineageTag: 76ef3de9-008f-4fa2-b5ba-cdba74a621bb
+		summarizeBy: none
+		sourceColumn: team2
+
+		annotation SummarizationSetBy = Automatic
+
+	column winner
+		dataType: string
+		lineageTag: da191a3f-6edf-4f6b-ac4d-455a7b761c11
+		summarizeBy: none
+		sourceColumn: winner
+
+		annotation SummarizationSetBy = Automatic
+
+	column margin
+		dataType: string
+		lineageTag: 855b4d20-760b-4c06-916f-89c148fbfbcc
+		summarizeBy: none
+		sourceColumn: margin
+
+		annotation SummarizationSetBy = Automatic
+
+	column ground
+		dataType: string
+		lineageTag: d8dc646c-0bec-45a8-8819-fa2901e8c698
+		summarizeBy: none
+		sourceColumn: ground
+
+		annotation SummarizationSetBy = Automatic
+
+	column matchDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 19dceb00-98ae-44f8-8be5-da4f07c0544b
+		summarizeBy: none
+		sourceColumn: matchDate
+
+		variation Variation
+			isDefault
+			relationship: fa71821c-bfcd-4503-b30e-d6e49bc48406
+			defaultHierarchy: LocalDateTable_831203b5-8c38-4386-a364-cd42bbb1638a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column match_id
+		dataType: string
+		lineageTag: af48cbf7-a4e4-4b25-ba78-6c2b9e347788
+		summarizeBy: none
+		sourceColumn: match_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stage
+		dataType: string
+		lineageTag: 244b66cd-15d1-46ed-836b-795f1d72cddf
+		summarizeBy: none
+		sourceColumn: Stage
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_match_summary = m
+		mode: import
+		source =
+				let
+				    Source = Folder.Files("C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files"),
+				    #"C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files\_dim_match_summary csv" = Source{[#"Folder Path"="C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files\",Name="dim_match_summary.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files\_dim_match_summary csv",[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"team1", type text}, {"team2", type text}, {"winner", type text}, {"margin", type text}, {"ground", type text}, {"matchDate", type date}, {"match_id", type text}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type", "Stage", each if [matchDate] < #date(2022, 10, 22) then "Qualifier" else "Super 12"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Conditional Column",{{"Stage", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

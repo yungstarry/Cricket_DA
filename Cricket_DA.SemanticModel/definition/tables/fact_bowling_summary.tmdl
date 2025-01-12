@@ -1,0 +1,169 @@
+table fact_bowling_summary
+	lineageTag: d9148808-52f8-4efd-8a71-823f0c6ed6ae
+
+	column match
+		dataType: string
+		lineageTag: 4a8d8659-0e70-441d-8863-5329d900ed2a
+		summarizeBy: none
+		sourceColumn: match
+
+		annotation SummarizationSetBy = Automatic
+
+	column team
+		dataType: string
+		lineageTag: 39562bad-a9ab-4c9a-a6ac-c89d27ca7b34
+		summarizeBy: none
+		sourceColumn: team
+
+		annotation SummarizationSetBy = Automatic
+
+	column bowlerName
+		dataType: string
+		lineageTag: ba13d222-bf27-4bb4-9b04-dd0f9200e49d
+		summarizeBy: none
+		sourceColumn: bowlerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column overs
+		dataType: int64
+		formatString: 0
+		lineageTag: bc06ceb9-29d2-450d-8305-d6d2cab9e2e7
+		summarizeBy: sum
+		sourceColumn: overs
+
+		annotation SummarizationSetBy = Automatic
+
+	column overs2
+		dataType: double
+		lineageTag: 1917a2a1-b5de-4376-b7df-11a620a60034
+		summarizeBy: sum
+		sourceColumn: overs2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maiden
+		dataType: int64
+		formatString: 0
+		lineageTag: b2b17b03-9b3d-4301-aa28-4f1c1b57973a
+		summarizeBy: sum
+		sourceColumn: maiden
+
+		annotation SummarizationSetBy = Automatic
+
+	column runs
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e310e01-65dd-4e63-8bc7-4e7004316fa2
+		summarizeBy: sum
+		sourceColumn: runs
+
+		annotation SummarizationSetBy = Automatic
+
+	column wickets
+		dataType: int64
+		formatString: 0
+		lineageTag: 2db022fb-5c0a-4080-90d2-5caaec223f52
+		summarizeBy: sum
+		sourceColumn: wickets
+
+		annotation SummarizationSetBy = Automatic
+
+	column economy
+		dataType: double
+		lineageTag: 70a81066-550f-4341-8300-0704974f269f
+		summarizeBy: sum
+		sourceColumn: economy
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column zeros
+		dataType: int64
+		formatString: 0
+		lineageTag: f4dadf65-396f-4419-ba80-a3f446184cc7
+		summarizeBy: sum
+		sourceColumn: zeros
+
+		annotation SummarizationSetBy = Automatic
+
+	column fours
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c255003-08f4-40bb-bc5a-d06249662a09
+		summarizeBy: sum
+		sourceColumn: fours
+
+		annotation SummarizationSetBy = Automatic
+
+	column sixes
+		dataType: int64
+		formatString: 0
+		lineageTag: 4745ff62-ddbe-4231-a048-0065b99b475b
+		summarizeBy: sum
+		sourceColumn: sixes
+
+		annotation SummarizationSetBy = Automatic
+
+	column wides
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a84cdeb-48ff-4107-8748-84c62a7f665a
+		summarizeBy: sum
+		sourceColumn: wides
+
+		annotation SummarizationSetBy = Automatic
+
+	column noBalls
+		dataType: int64
+		formatString: 0
+		lineageTag: 9a6ee32d-3a8c-4ed6-94bf-2858c7f71848
+		summarizeBy: sum
+		sourceColumn: noBalls
+
+		annotation SummarizationSetBy = Automatic
+
+	column match_id
+		dataType: string
+		lineageTag: 0163dc88-b32b-4eeb-9b78-ca3012d2a0f3
+		summarizeBy: none
+		sourceColumn: match_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column balls
+		dataType: int64
+		formatString: 0
+		lineageTag: 7272975c-7eb3-4f17-9a06-381c0d536e74
+		summarizeBy: sum
+		sourceColumn: balls
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_bowling_summary = m
+		mode: import
+		source =
+				let
+				    Source = Folder.Files("C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files"),
+				    #"C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files\_fact_bowling_summary csv" = Source{[#"Folder Path"="C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files\",Name="fact_bowling_summary.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"C:\Users\HP\OneDrive\Desktop\Cricket_DA\csv files\_fact_bowling_summary csv",[Delimiter=",", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"match", type text}, {"bowlingTeam", type text}, {"bowlerName", type text}, {"overs", type number}, {"maiden", Int64.Type}, {"runs", Int64.Type}, {"wickets", Int64.Type}, {"economy", type number}, {"0s", Int64.Type}, {"4s", Int64.Type}, {"6s", Int64.Type}, {"wides", Int64.Type}, {"noBalls", Int64.Type}, {"match_id", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"bowlingTeam", "team"}, {"0s", "zeros"}, {"4s", "fours"}, {"6s", "sixes"}}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(Table.TransformColumnTypes(#"Renamed Columns", {{"overs", type text}}, "en-US"), "overs", Splitter.SplitTextByDelimiter(".", QuoteStyle.Csv), {"overs.1", "overs.2"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"overs.1", Int64.Type}, {"overs.2", Int64.Type}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type1",{{"overs.1", "overs"}, {"overs.2", "balls"}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns1",null,0,Replacer.ReplaceValue,{"balls"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Replaced Value",{{"balls", "overs2"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns2", "balls", each [overs] * 6 + [overs2]),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"balls", Int64.Type}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
