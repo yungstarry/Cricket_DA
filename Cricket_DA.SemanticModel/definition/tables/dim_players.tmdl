@@ -57,6 +57,32 @@ table dim_players
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Custom Batting Order' = ```
+			SWITCH(
+			    TRUE(),
+			dim_players[name] = "Jos Buttler",1,
+			dim_players[name] = "Rilee Rossouw",2,
+			dim_players[name] = "Alex Hales",2,
+			dim_players[name]  = "Virat Kohli",3,
+			dim_players[name] = "Suryakumar Yadav" ,4,
+			dim_players[name] = "Glenn Phillips" ,5,
+			dim_players[name] = "Marcus Stoinis" ,6,
+			dim_players[name] = "Glenn Maxwell" ,6,
+			dim_players[name] = "Sikandar Raza" ,7,
+			dim_players[name] = "Rashid Khan" ,8,
+			dim_players[name] = "Shadab Khan" ,8,
+			dim_players[name] = "Sam Curran" ,9,
+			dim_players[name] = "Shaheen Shah Afridi" ,10,
+			dim_players[name] = "Anrich Nortje" ,11
+			)
+			
+			```
+		formatString: 0
+		lineageTag: d60113dd-610c-4235-a8b8-39a19da6bcc6
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition dim_players = m
 		mode: import
 		source =

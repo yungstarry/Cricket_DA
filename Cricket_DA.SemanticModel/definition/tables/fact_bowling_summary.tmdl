@@ -143,6 +143,16 @@ table fact_bowling_summary
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Boundary runs' = ```
+			fact_bowling_summary[fours]*4 +fact_bowling_summary[Sixes]*6
+			
+			```
+		formatString: 0
+		lineageTag: 2a57c2bb-cedf-4523-80b7-7fa0d601cb08
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition fact_bowling_summary = m
 		mode: import
 		source =

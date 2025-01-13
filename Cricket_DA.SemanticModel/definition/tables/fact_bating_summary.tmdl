@@ -95,6 +95,16 @@ table fact_bating_summary
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'boundary runs' = ```
+			fact_bating_summary[fours]*4 + fact_bating_summary[sixes]*6
+			
+			```
+		formatString: 0
+		lineageTag: 4cb898ec-9582-4c8a-a81f-1db1979c7bee
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition fact_bating_summary = m
 		mode: import
 		source =
