@@ -34,6 +34,17 @@
           "type": "BaseTheme"
         }
       ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "cricket_dashboard_background15357651277864615.svg",
+          "path": "cricket_dashboard_background15357651277864615.svg",
+          "type": "Image"
+        }
+      ]
     }
   ],
   "settings": {
