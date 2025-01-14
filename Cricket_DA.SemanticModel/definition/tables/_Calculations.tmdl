@@ -6,7 +6,7 @@ table _Calculations
 		displayFolder: Batting
 		lineageTag: d0e3b399-448b-469f-b923-80e307033b34
 
-	measure 'Total Innings Batted' = COUNT(dim_match_summary[match_id])
+	measure 'Total Innings Batted' = COUNT(fact_bating_summary[match_id])
 		formatString: 0
 		displayFolder: Batting
 		lineageTag: 0b8223cf-74d1-4da1-a14d-ed02494cb254
@@ -36,16 +36,16 @@ table _Calculations
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Battling Position' = ROUNDUP(AVERAGE(fact_bating_summary[battingPos]), 0)
+		formatString: 0
 		displayFolder: Batting
 		lineageTag: 1adec08c-ca30-4c48-a2e0-407ad158889e
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"isDecimal":true}
 
-	measure 'Boundary %' = DIVIDE(SUM(fact_bating_summary[runs]),[Total Runs],0)
+	measure 'Boundary %' = DIVIDE(SUM(fact_bating_summary[boundary runs]),[Total Runs],0)
+		formatString: 0.00%;-0.00%;0.00%
 		displayFolder: Batting
 		lineageTag: f8d38ef6-f5fe-4802-9858-728a48c988d0
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Avg. Balls Faced' = AVERAGE(fact_bating_summary[balls])
 		displayFolder: Batting
@@ -98,7 +98,7 @@ table _Calculations
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Player Selection' = if(ISFILTERED(dim_players[name]),"1", "0")
-		displayFolder: Bowling
+		displayFolder: Others
 		lineageTag: a8d22127-08e8-4393-92df-083d5ca794ec
 
 	measure 'Display Text' = ```

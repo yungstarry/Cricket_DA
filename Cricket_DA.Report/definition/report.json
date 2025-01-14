@@ -7,7 +7,7 @@
       "type": "SharedResources"
     }
   },
-  "layoutOptimization": "None",
+  "layoutOptimization": "PhonePortrait",
   "objects": {
     "section": [
       {
@@ -16,6 +16,19 @@
             "expr": {
               "Literal": {
                 "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
               }
             }
           }
