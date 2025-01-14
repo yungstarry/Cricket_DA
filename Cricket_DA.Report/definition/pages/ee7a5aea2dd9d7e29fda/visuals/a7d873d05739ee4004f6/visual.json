@@ -4,7 +4,7 @@
   "position": {
     "x": 34.408722588774744,
     "y": 245.16214844502002,
-    "z": 10500,
+    "z": 8000,
     "height": 348.38831621134426,
     "width": 1849.4688391466423,
     "tabOrder": 1000
@@ -72,7 +72,8 @@
                 }
               },
               "queryRef": "_Calculations.Total Innings Batted",
-              "nativeQueryRef": "Total Innings Batted"
+              "nativeQueryRef": "Innings Batted",
+              "displayName": "Innings Batted"
             },
             {
               "field": {
@@ -451,7 +452,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "321.5741325997645D"
+                  "Value": "356.0296715351497D"
                 }
               }
             }
@@ -465,7 +466,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "227.3549071686666D"
+                  "Value": "289.62470358104486D"
                 }
               }
             }
@@ -479,7 +480,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "186.25818109292618D"
+                  "Value": "250.68792924508352D"
                 }
               }
             }
@@ -521,7 +522,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "137.65599643931563D"
+                  "Value": "129.0319443172063D"
                 }
               }
             }
@@ -535,13 +536,27 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "191.8655174714633D"
+                  "Value": "97.15882177635014D"
                 }
               }
             }
           },
           "selector": {
             "metadata": "_Calculations.Battling Position"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "123.2472673008196D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Calculations.Total Innings Batted"
           }
         }
       ],
@@ -582,6 +597,18 @@
                   "expr": {
                     "Literal": {
                       "Value": "'#F2F2F2'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
                     }
                   }
                 }
@@ -650,6 +677,18 @@
                   "expr": {
                     "Literal": {
                       "Value": "'#F2F2F2'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
                     }
                   }
                 }

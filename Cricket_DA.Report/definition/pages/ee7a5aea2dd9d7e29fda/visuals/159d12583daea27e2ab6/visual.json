@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
-  "name": "052ec2fff22f85845980",
+  "name": "159d12583daea27e2ab6",
   "position": {
-    "x": 10.752725808992107,
-    "y": 163.44143229668,
-    "z": 4000,
-    "height": 453.76502913946689,
-    "width": 1898.9313778680059,
-    "tabOrder": 11000
+    "x": 66.666900015751054,
+    "y": 176.34470326747055,
+    "z": 10000,
+    "height": 68.817445177549487,
+    "width": 318.28068394616633,
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "shape",
@@ -25,7 +25,7 @@
             "rectangleRoundedCurve": {
               "expr": {
                 "Literal": {
-                  "Value": "6L"
+                  "Value": "8L"
                 }
               }
             }
@@ -45,30 +45,76 @@
           }
         }
       ],
-      "fill": [
+      "text": [
         {
           "properties": {
-            "fillColor": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Power Hitlers / Openers'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "fontColor": {
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#F2F2F2'"
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
                     }
                   }
                 }
               }
             },
-            "transparency": {
+            "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "'center'"
+                }
+              }
+            },
+            "verticalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'middle'"
                 }
               }
             }
           },
           "selector": {
             "id": "default"
+          }
+        }
+      ],
+      "fill": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ],
