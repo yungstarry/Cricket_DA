@@ -114,7 +114,7 @@ table _Calculations
 		lineageTag: c94bdb23-7949-4dde-9026-080cd7c5acca
 
 	measure 'Color Callout Value' = ```
-			if([Player Selection]="0", "#D0CF1D","#1D1D2E")
+			if([Player Selection]="0", "#E66C37","#000000")
 			
 			```
 		displayFolder: Others

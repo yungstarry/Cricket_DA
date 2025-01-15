@@ -28,7 +28,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "true"
+                "Value": "false"
               }
             }
           }
@@ -55,6 +55,21 @@
         {
           "name": "cricket_dashboard_background15357651277864615.svg",
           "path": "cricket_dashboard_background15357651277864615.svg",
+          "type": "Image"
+        },
+        {
+          "name": "new9574596386784204.png",
+          "path": "new9574596386784204.png",
+          "type": "Image"
+        },
+        {
+          "name": "cricket-bat5059509184024202.png",
+          "path": "cricket-bat5059509184024202.png",
+          "type": "Image"
+        },
+        {
+          "name": "2022_ICC_Men's_T20_World_Cup_l8456790186535124.png",
+          "path": "2022_ICC_Men's_T20_World_Cup_l8456790186535124.png",
           "type": "Image"
         }
       ]

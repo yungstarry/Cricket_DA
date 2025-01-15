@@ -1,69 +1,24 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
-  "name": "50036978eb3c080ce902",
+  "name": "032a5a8664784c1bd048",
   "position": {
-    "x": 1278.252846334346,
-    "y": 51.845949123620215,
-    "z": 19000,
-    "height": 75,
-    "width": 185,
-    "tabOrder": 18000
+    "x": 299.18359739049396,
+    "y": 0,
+    "z": 29000,
+    "height": 97.137531620290247,
+    "width": 198.1605645053921,
+    "tabOrder": 29000
   },
   "visual": {
-    "visualType": "shape",
+    "visualType": "actionButton",
     "objects": {
-      "shape": [
+      "icon": [
         {
           "properties": {
-            "tileShape": {
+            "shapeType": {
               "expr": {
                 "Literal": {
-                  "Value": "'parallelogram'"
-                }
-              }
-            },
-            "roundEdge": {
-              "expr": {
-                "Literal": {
-                  "Value": "13L"
-                }
-              }
-            },
-            "parallelogramSlant": {
-              "expr": {
-                "Literal": {
-                  "Value": "33L"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "rotation": [
-        {
-          "properties": {
-            "shapeAngle": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "fill": [
-        {
-          "properties": {
-            "fillColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
+                  "Value": "'blank'"
                 }
               }
             }
@@ -97,7 +52,19 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Finisher'"
+                  "Value": "'Player Analysis'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             },
@@ -108,17 +75,10 @@
                 }
               }
             },
-            "leftMargin": {
+            "italic": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
-                }
-              }
-            },
-            "rightMargin": {
-              "expr": {
-                "Literal": {
-                  "Value": "8L"
+                  "Value": "true"
                 }
               }
             }
@@ -126,36 +86,28 @@
           "selector": {
             "id": "default"
           }
-        }
-      ],
-      "outline": [
+        },
         {
           "properties": {
-            "lineColor": {
+            "fontColor": {
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#e66c37'"
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
                     }
                   }
                 }
               }
-            },
-            "weight": {
-              "expr": {
-                "Literal": {
-                  "Value": "2D"
-                }
-              }
             }
           },
           "selector": {
-            "id": "default"
+            "id": "hover"
           }
         }
       ],
-      "glow": [
+      "fill": [
         {
           "properties": {
             "show": {
@@ -169,21 +121,15 @@
         },
         {
           "properties": {
-            "color": {
+            "fillColor": {
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#e66c37'"
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
                     }
                   }
-                }
-              }
-            },
-            "shadowBlur": {
-              "expr": {
-                "Literal": {
-                  "Value": "17D"
                 }
               }
             },
@@ -199,16 +145,14 @@
             "id": "default"
           }
         }
-      ]
-    },
-    "visualContainerObjects": {
-      "padding": [
+      ],
+      "outline": [
         {
           "properties": {
-            "left": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "false"
                 }
               }
             }
