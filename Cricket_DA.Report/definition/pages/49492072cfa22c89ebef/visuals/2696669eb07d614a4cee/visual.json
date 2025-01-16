@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
-  "name": "a7d68471d83fc362fd92",
+  "name": "2696669eb07d614a4cee",
   "position": {
-    "x": 0,
-    "y": 0,
-    "z": 0,
-    "height": 148.38761616409107,
-    "width": 1920.4368294859903,
-    "tabOrder": 10000
+    "x": 28.708941022325522,
+    "y": 459.52925437689407,
+    "z": 6000,
+    "height": 59.677419354838712,
+    "width": 90.3225806451613,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "shape",
@@ -18,7 +18,14 @@
             "tileShape": {
               "expr": {
                 "Literal": {
-                  "Value": "'rectangle'"
+                  "Value": "'parallelogram'"
+                }
+              }
+            },
+            "roundEdge": {
+              "expr": {
+                "Literal": {
+                  "Value": "11L"
                 }
               }
             }
@@ -49,6 +56,40 @@
                       "Value": "'#635EF2'"
                     }
                   }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "text": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'AVG Balls Faced'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
                 }
               }
             }

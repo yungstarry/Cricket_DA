@@ -20,6 +20,7 @@ table dim_players
 	column image
 		dataType: string
 		lineageTag: 3e8ef8d4-9ac1-47c8-bb03-f7e592170986
+		dataCategory: ImageUrl
 		summarizeBy: none
 		sourceColumn: image
 

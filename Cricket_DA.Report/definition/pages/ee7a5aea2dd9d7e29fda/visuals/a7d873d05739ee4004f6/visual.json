@@ -4,7 +4,7 @@
   "position": {
     "x": 34.408722588774744,
     "y": 245.16214844502002,
-    "z": 7000,
+    "z": 5000,
     "height": 348.38831621134426,
     "width": 1849.4688391466423,
     "tabOrder": 1000
@@ -726,6 +726,26 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'49492072cfa22c89ebef'"
                 }
               }
             }
